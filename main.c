@@ -1,6 +1,5 @@
 #include "monty.h"
 
-Node *stack = NULL;
 
 /**
  * main - Entry point of the Monty program
@@ -10,6 +9,8 @@ Node *stack = NULL;
  */
 int main(int argc, char *argv[])
 {
+	Node *stack = NULL;
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");

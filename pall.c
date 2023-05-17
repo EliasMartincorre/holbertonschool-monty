@@ -1,10 +1,12 @@
 #include "monty.h"
 /**
  * pall - Prints all the values on the stack
+ * @stack: Pointer to the stack
  */
-void pall(void)
+void pall(const Node *stack)
 {
-	Node *current = stack;
+	const Node *current = stack;
+
 	while (current != NULL)
 	{
 		printf("%d\n", current->data);

@@ -18,12 +18,9 @@ typedef struct Node
 	struct Node *next;
 } Node;
 
-/* Main function */
-int main(int argc, char *argv[]);
-
 /* Monty operations */
-void push(int value);
-void pall(void);
-void free_stack(void);
+void push(Node **stack, int value);
+void pall(const Node *stack);
+void free_stack(Node *stack);
 
 #endif /* MONTY_H */
