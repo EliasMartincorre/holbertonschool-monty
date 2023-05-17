@@ -1,13 +1,14 @@
 #include "monty.h"
 /**
- * pall - Prints all the values on the stack
+ * free_stack - Frees the stack.
  */
-void pall(void)
+void free_stack(void)
 {
 	Node *current = stack;
 	while (current != NULL)
 	{
-		printf("%d\n", current->data);
+		Node *temp = current;
 		current = current->next;
+		free(temp);
 	}
 }
