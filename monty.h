@@ -22,5 +22,6 @@ typedef struct Node
 void push(Node **stack, int value);
 void pall(const Node *stack);
 void free_stack(Node *stack);
+void pint(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */
