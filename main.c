@@ -1,6 +1,5 @@
 #include "monty.h"
 
-
 /**
  * main - Entry point of the Monty program
  * @argc: Number of command-line arguments
@@ -18,6 +17,7 @@ int main(int argc, char *argv[])
 	}
 
 	FILE *file = fopen(argv[1], "r");
+
 	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
 
 	char line[MAX_LINE_LENGTH];
 	int line_number = 1;
+
 	while (fgets(line, MAX_LINE_LENGTH, file))
 	{
 		char *opcode = strtok(line, " \t\n");
@@ -39,31 +40,33 @@ int main(int argc, char *argv[])
 		if (strcmp(opcode, "push") == 0)
 		{
 			char *arg = strtok(NULL, " \t\n");
+
 			if (arg == NULL)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
-				free_stack();
+				free_stack(stack);
 				fclose(file);
 				return (EXIT_FAILURE);
 			}
 			int value = atoi(arg);
+
 			if (value == 0 && arg[0] != '0')
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
-				free_stack();
+				free_stack(stack);
 				fclose(file);
 				return (EXIT_FAILURE);
 			}
-			push(value);
+			push(&stack, value);
 		}
 		else if (strcmp(opcode, "pall") == 0)
 		{
-			pall();
+			pall(stack);
 		}
 		else
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-			free_stack();
+			free_stack(stack);
 			fclose(file);
 			return (EXIT_FAILURE);
 		}
@@ -71,7 +74,7 @@ int main(int argc, char *argv[])
 		line_number++;
 	}
 
-	free_stack();
+	free_stack(stack);
 	fclose(file);
 
 	return (EXIT_SUCCESS);
